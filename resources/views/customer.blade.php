@@ -20,15 +20,22 @@
             }
         </style>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     </head>
     <body class="antialiased">
         <div class="space-y-10 relative flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             <div class="p-6 md:w-1/2 w-10/12 bg-gray-300">
                 <div class="w-max mx-auto pb-6">
-                    Now Serving: <br>
-                    Last Number: <br>
+                    Now Serving:
+                    @if(isset($queue))
+                    <span id="current-queue">{{$queue->now_serving}}</span><br>
+                    @else
+                    <span id="current-queue"></span><br>
+                    @endif
+                    Last Number:
+                    <span id="last-number"></span><br>
                 </div>
-                <button class="block p-6 bg-white mx-auto">
+                <button id="take-a-number" class="block p-6 bg-white mx-auto">
                     Take a Number
                 </button>
             </div>
@@ -100,5 +107,19 @@
         channel.bind('my-event', function(data) {
             alert(JSON.stringify(data));
         });
+
+        document.getElementById("take-a-number").addEventListener('click', (event) => {
+            fetch("/api/take-number")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                var last_number= document.getElementById("last-number")
+                console.log(last_number.text)
+                last_number.innerHtml = "1"
+                if(last_number.text){
+                    last_number.innerHtml = parseInt(last_number.text)+1
+                }
+            })
+        })
     </script>
 </html>
