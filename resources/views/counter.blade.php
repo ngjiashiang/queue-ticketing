@@ -54,8 +54,8 @@
             function callNext(api_path) {
                 fetch(api_path)
             }
-        <script src="https://cdn.tailwindcss.com"></script>
         </script>
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="antialiased">
         <div class="space-y-10 relative flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
