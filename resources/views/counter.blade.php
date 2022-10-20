@@ -20,6 +20,41 @@
             }
         </style>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script>
+            function goOffline(api_path) {
+                var offline_button_id = "offline-button-counter-"+api_path.slice(-1)
+                var online_button_id = "online-button-counter-"+api_path.slice(-1)
+                var offline_button = document.getElementById(offline_button_id)
+                var online_button = document.getElementById(online_button_id)
+
+                fetch(api_path)
+                .then(() => {
+                    offline_button.classList.add('hidden')
+                    online_button.classList.remove('hidden')
+                })
+            }
+
+            function goOnline(api_path) {
+                var offline_button_id = "offline-button-counter-"+api_path.slice(-1)
+                var online_button_id = "online-button-counter-"+api_path.slice(-1)
+                var offline_button = document.getElementById(offline_button_id)
+                var online_button = document.getElementById(online_button_id)
+
+                fetch(api_path)
+                .then(() => {
+                    online_button.classList.add('hidden')
+                    offline_button.classList.remove('hidden')
+                })
+            }
+
+            function compCurr(api_path) {
+                fetch(api_path)
+            }
+
+            function callNext(api_path) {
+                fetch(api_path)
+            }
+        </script>
     </head>
     <body class="antialiased">
         <div class="space-y-10 relative flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
@@ -29,13 +64,16 @@
                         <div>
                             Counter 1
                         </div>
-                        <button class="bg-gray-200 p-4">
+                        <button id="offline-button-counter-1" onclick="goOffline('/api/offline/1')" class="bg-gray-200 p-4">
                             Go offline
                         </button>
-                        <button class="bg-gray-200 p-4">
+                        <button id="online-button-counter-1" onclick="goOnline('/api/online/1')" class="hidden bg-gray-200 p-4">
+                            Go online
+                        </button>
+                        <button id="comp-curr-button-1" onclick="compCurr('/api/comp-curr/1')" class="bg-gray-200 p-4">
                             Comp curr
                         </button>
-                        <button class="bg-gray-200 p-4">
+                        <button id="call-next-button-1" onclick="callNext('/api/call-next/1')" class="bg-gray-200 p-4">
                             Call Next
                         </button>
                     </div>
@@ -45,13 +83,16 @@
                         <div>
                             Counter 2
                         </div>
-                        <button class="bg-gray-200 p-4">
+                        <button id="offline-button-counter-2" onclick="goOffline('/api/offline/2')" class="bg-gray-200 p-4">
                             Go offline
                         </button>
-                        <button class="bg-gray-200 p-4">
+                        <button id="online-button-counter-2" onclick="goOnline('/api/online/2')" class="hidden bg-gray-200 p-4">
+                            Go online
+                        </button>
+                        <button id="comp-curr-button-2" onclick="compCurr('/api/comp-curr/2')" class="bg-gray-200 p-4">
                             Comp curr
                         </button>
-                        <button class="bg-gray-200 p-4">
+                        <button id="call-next-button-2" onclick="callNext('/api/call-next/2')" class="bg-gray-200 p-4">
                             Call Next
                         </button>
                     </div>
@@ -61,13 +102,16 @@
                         <div>
                             Counter 3
                         </div>
-                        <button class="bg-gray-200 p-4">
+                        <button id="offline-button-counter-3" onclick="goOffline('/api/offline/3')" class="bg-gray-200 p-4">
                             Go offline
                         </button>
-                        <button class="bg-gray-200 p-4">
+                        <button id="online-button-counter-3" onclick="goOnline('/api/online/3')" class="hidden bg-gray-200 p-4">
+                            Go online
+                        </button>
+                        <button id="comp-curr-button-3" onclick="compCurr('/api/comp-curr/3')" class="bg-gray-200 p-4">
                             Comp curr
                         </button>
-                        <button class="bg-gray-200 p-4">
+                        <button id="call-next-button-3" onclick="callNext('/api/call-next/3')" class="bg-gray-200 p-4">
                             Call Next
                         </button>
                     </div>
@@ -77,13 +121,16 @@
                         <div>
                             Counter 4
                         </div>
-                        <button class="bg-gray-200 p-4">
+                        <button id="offline-button-counter-4" onclick="goOffline('/api/offline/4')" class="bg-gray-200 p-4">
                             Go offline
                         </button>
-                        <button class="bg-gray-200 p-4">
+                        <button id="online-button-counter-4" onclick="goOnline('/api/online/4')" class="hidden bg-gray-200 p-4">
+                            Go online
+                        </button>
+                        <button id="comp-curr-button-4" onclick="compCurr('/api/comp-curr/4')" class="bg-gray-200 p-4">
                             Comp curr
                         </button>
-                        <button class="bg-gray-200 p-4">
+                        <button id="call-next-button-4" onclick="callNext('/api/call-next/4')" class="bg-gray-200 p-4">
                             Call Next
                         </button>
                     </div>

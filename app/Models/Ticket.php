@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tickets extends Model
+class Ticket extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'is_done',
+        'status',
+        'served_by'
     ];
 }

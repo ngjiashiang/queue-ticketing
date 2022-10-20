@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_done')->defualt(false);
+            $table->string('status')->default("new");
+            $table->string('served_by')->nullable();
             $table->timestamps();
         });
     }

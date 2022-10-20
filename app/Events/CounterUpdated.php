@@ -10,20 +10,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CustomerViewUpdated
+class CounterUpdated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
+    public $counter;
+    public $status;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($counter, $status)
     {
-        $this->message = $message;
+        $this->counter = $counter;
+        $this->status = $status;
     }
 
     /**
@@ -33,11 +35,11 @@ class CustomerViewUpdated
      */
     public function broadcastOn()
     {
-        return new Channel('channel-name');
+        return new Channel('customer-view');
     }
 
     public function broadcastAs()
     {
-        return 'customer-view-updated';
+        return 'counter-updated';
     }
 }

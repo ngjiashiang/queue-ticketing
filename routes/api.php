@@ -20,10 +20,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/offline/{counter-number}', [CounterController::class, 'toggleCounterOffline'])->where(['path' => '[1-4]'])->name('toggleCounterOffline');
-Route::get('/online/{counter-number}', [CounterController::class, 'toggleCounterOnline'])->where(['path' => '[1-4]'])->name('toggleCounterOnline');
-Route::get('/comp-curr/{counter-number}', [CounterController::class, 'compCurr'])->where(['path' => '[1-4]'])->name('compCurr');
-Route::get('/call-next/{counter-number}', [CounterController::class, 'callNext'])->where(['path' => '[1-4]'])->name('callNext');
+Route::get('/offline/{counter}', [CounterController::class, 'toggleCounterOffline'])->name('toggleCounterOffline')->where('counter', collect(
+                [
+                    '1', '2', '3', '4'
+                ]
+            )->implode('|'));
+Route::get('/online/{counter}', [CounterController::class, 'toggleCounterOnline'])->name('toggleCounterOnline')->where('counter', collect(
+                [
+                    '1', '2', '3', '4'
+                ]
+            )->implode('|'));
+Route::get('/comp-curr/{counter}', [CounterController::class, 'compCurr'])->name('compCurr')->where('counter', collect(
+                [
+                    '1', '2', '3', '4'
+                ]
+            )->implode('|'));
+Route::get('/call-next/{counter}', [CounterController::class, 'callNext'])->name('callNext')->where('counter', collect(
+                [
+                    '1', '2', '3', '4'
+                ]
+            )->implode('|'));
 
 Route::get('/take-number', [CustomerController::class, 'takeNumber'])->name('takeNumber');
 Route::get('/current-number', [CustomerController::class, 'currentNumber'])->name('currentNumber');
