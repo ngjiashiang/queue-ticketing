@@ -9,7 +9,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $now_serving = Ticket::where('status', "serving")->latest()->first();
+        $now_serving = Ticket::where('status', "serving")->orderBy('updated_at', 'desc')->first();
         $last_number = Ticket::where('status', "new")->latest()->first();
         $c1 = Ticket::where('served_by', "1")->where('status', "serving")->latest()->first();
         $c2 = Ticket::where('served_by', "2")->where('status', "serving")->latest()->first();
